@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sru:explainResponse xmlns:sru="http://www.loc.gov/zing/srw/">
+    <sru:version>1.2</sru:version>
+    <sru:record>
+        <sru:recordPacking>XML</sru:recordPacking>
+        <sru:recordSchema>http://explain.z3950.org/dtd/2.0/</sru:recordSchema>
+
+        <sru:recordData>
+
+            <zr:explain xmlns:zr="http://explain.z3950.org/dtd/2.0/">
+
+                <zr:serverInfo protocol="SRU" version="1.1" transport="http" method="GET">
+                    <zr:host>{tmpl_var name='hostid'}</zr:host>
+                    <zr:port>80</zr:port>
+                    <zr:database>{tmpl_var name='database'}</zr:database>
+                </zr:serverInfo>
+
+                <zr:databaseInfo>
+                    <zr:title lang="en" primary="true">{tmpl_var name='databaseTitle'}</zr:title>
+                    <zr:author>{tmpl_var name='databaseAuthor'}</zr:author>
+                    <tmpl_if name='dbRestrictions' op='!=' value=''>
+                        <zr:restrictions lang="en">{tmpl_var name='dbRestrictions'}</zr:restrictions>
+                    </tmpl_if>
+                    <zr:description lang="en">{tmpl_var name='dbDescription'}</zr:description>
+                </zr:databaseInfo>
+
+                <zr:indexInfo>
+                    <zr:index search="true" scan="true" sort="false">
+                        <zr:title lang="en">CQL Server Choice</zr:title>
+                        <zr:map>
+                            <zr:name set="cql">serverChoice</zr:name>
+                        </zr:map>
+                    </zr:index>
+                    <zr:index search="true" scan="true" sort="false">
+                        <zr:title lang="en">CQL All</zr:title>
+                        <zr:map>
+                            <zr:name set="cql">all</zr:name>
+                        </zr:map>
+                    </zr:index>
+                    <tmpl_loop name="maps">
+                        <zr:index search="{tmpl_var name='search'}" scan="{tmpl_var name='scan'}" sort="{tmpl_var name='sort'}">
+                        <zr:title lang="en">{tmpl_var name='title'}</zr:title>
+                        <zr:map>
+                            <zr:name set="fcs">{tmpl_var name='name'}</zr:name>
+                        </zr:map>
+                    </zr:index>
+                    </tmpl_loop>
+                </zr:indexInfo>
+
+                <zr:schemaInfo>
+                    <zr:schema identifier="http://www.loc.gov/zing/srw/dcschema/v1.0/" location="http://www.loc.gov/zing/srw/dc.xsd" name="dc" retrieve="true">
+                        <zr:title lang="en">Dublin Core</zr:title>
+                    </zr:schema>
+                    <zr:schema identifier="clarin.eu/schema/ccs-v1.0" location="" name="ccs" retrieve="true">
+                        <zr:title lang="en">CLARIN Content Search</zr:title>
+                    </zr:schema>
+                </zr:schemaInfo>
+
+
+                <zr:configInfo>
+
+                    <zr:default type="numberOfRecords">10</zr:default>
+                    <zr:setting type="maximumRecords">100</zr:setting>
+                    <zr:setting type="resultSetTTL">100</zr:setting>
+
+                </zr:configInfo>
+
+            </zr:explain>
+
+        </sru:recordData>
+
+    </sru:record>
+
+</sru:explainResponse>
