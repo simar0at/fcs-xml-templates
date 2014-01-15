@@ -1,13 +1,22 @@
 {
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://simar0at.github.io/composer-repos/"
+        }
+    ],
     "name": "ACDH/FcsXmlTemplates",
     "require": {
         "php": ">=5.3.3"
     },
     "version": "0.6.0",
+    "require": {
+        "clausvb/vlib": "dev-master"
+    },
     "autoload": {
         "psr-4": {
             "ACDH\\FcsXmlTemplates\\": "src",
-            "ACDH\\FcsXmlTemplates\\Tests": "test"            
+            "ACDH\\FcsXmlTemplates\\Tests\\": "test"            
         }
     }
 }

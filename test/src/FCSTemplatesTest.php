@@ -3,6 +3,7 @@
 namespace ACDH\FcsXmlTemplates\Tests;
 
 require __DIR__ . '/../../src/FCSTemplates.php';
+$loader = include __DIR__ . '/../../vendor/autoload.php';
 
 use ACDH\FcsXmlTemplates\FCSTemplates as FCSTemplates;
 
@@ -31,7 +32,9 @@ class FCSTemplatesTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testGetPath().
      */
     public function testGetPath() {
-         $this->assertFileExists(FCSTemplates::getPath(FCSTemplates::$explain));
+        global $loader;
+        $this->assertFileExists(FCSTemplates::getPath(FCSTemplates::$explain));
+        $this->assertTrue($loader->loadClass("clausvb\\vlib\\vlibTemplate"));        
     }
 
 }
